@@ -2,8 +2,8 @@
 
 class ClassTamarins
 {
-    
-    public static void Main() {
+    public static void Main()
+    {
         var myClass = new ClassTamarins();
         myClass.Menu();
     }
@@ -18,6 +18,7 @@ class ClassTamarins
         Console.WriteLine("6-rain");
         Console.WriteLine("7-leaders");
         Console.WriteLine("8-path");
+        Console.WriteLine("9-stack");
         Console.Write("What program do you want to run? ");
         var pos = Convert.ToInt32(Console.ReadLine());
         switch (pos)
@@ -122,6 +123,19 @@ class ClassTamarins
                 }
 
                 break;
+            case 9: {
+                Console.WriteLine("Enter the string to reverce");
+                String str = Console.ReadLine();
+                Stack stack = new Stack(str.Length);
+                for (int i = 0; i < str.Length; i++) {
+                    stack.push(str[i]);
+                }
+                for (int i = 0; i < str.Length; i++) {
+                    Console.Write(stack.pop());
+                    
+                }
+                break;
+            }
             default:
                 Console.WriteLine("Wrong input CHOOSE AGAIN");
                 Menu();
@@ -355,5 +369,43 @@ class ClassTamarins
         }
 
         path.RemoveAt(path.Count - 1);
+    }
+}
+
+
+class Stack
+{
+    private int size;
+    private int index = -1;
+    private char[] array;
+
+    public Stack(int size)
+    {
+        this.size = size;
+        array = new char[size];
+    }
+
+    public void push(char x)
+    {
+        if (size > index) {
+            array[++index] = x;
+        }
+        else
+        {
+            Console.WriteLine("Stack overflow");
+        }
+    }
+
+    public char pop()
+    {
+        if (index >-1)
+        {
+            return array[index--];
+        }
+        else
+        {
+            return ' ' ;
+            Console.WriteLine("Stack underflow");
+        }
     }
 }
